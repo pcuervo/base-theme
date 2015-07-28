@@ -1,44 +1,83 @@
 <?php
 
+/*------------------------------------*\
+	TAXONOMIES
+\*------------------------------------*/
 
-// TAXONOMIES ////////////////////////////////////////////////////////////////////////
+add_action( 'init', 'custom_taxonomies_callback', 0 );
+function custom_taxonomies_callback(){
 
+	// BRANDS
+	if( ! taxonomy_exists('marcas')){
 
-	add_action( 'init', 'custom_taxonomies_callback', 0 );
+		$labels = array(
+			'name'              => 'Marca',
+			'singular_name'     => 'Marca',
+			'search_items'      => 'Buscar',
+			'all_items'         => 'Todos',
+			'edit_item'         => 'Editar marca',
+			'update_item'       => 'Actualizar marca',
+			'add_new_item'      => 'Nueva marca',
+			'new_item_name'     => 'Nombre nuevo marca',
+			'menu_name'         => 'Marcas'
+		);
+		$args = array(
+			'hierarchical'      => true,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'marca' ),
+		);
 
-	function custom_taxonomies_callback(){
-
-		// AUTORES
-		/*if( ! taxonomy_exists('autores')){
-
-			$labels = array(
-				'name'              => 'Autores',
-				'singular_name'     => 'Autor',
-				'search_items'      => 'Buscar',
-				'all_items'         => 'Todos',
-				'edit_item'         => 'Editar Autor',
-				'update_item'       => 'Actualizar Autor',
-				'add_new_item'      => 'Nuevo Autor',
-				'new_item_name'     => 'Nombre Nuevo Autor',
-				'menu_name'         => 'Autores'
-			);
-
-			$args = array(
-				'hierarchical'      => true,
-				'labels'            => $labels,
-				'show_ui'           => true,
-				'show_admin_column' => true,
-				'show_in_nav_menus' => true,
-				'query_var'         => true,
-				'rewrite'           => array( 'slug' => 'autores' ),
-			);
-
-			register_taxonomy( 'autor', 'libro', $args );
-		}*/
-		
-		
-		// TERMS
-		/*if ( ! term_exists( 'Carlos Fuentes', 'autor' ) ){
-			wp_insert_term( 'Carlos Fuentes', 'autor' );
-		}*/
+		register_taxonomy( 'marcas', 'productos', $args );
 	}
+
+	// Insert taxonomy terms
+	// insert_taxonomy_terms();
+
+}// custom_taxonomies_callback
+
+// /*
+//  * Insert dynamic taxonomy terms after a post has been created/saved.
+//  */
+// function update_taxonomies(){
+// 	global $post;
+
+// 	// Exist of post doesn't exist or it has been moved to trash
+// 	if( NULL === $post || 'trash' === get_post_status( $post->ID ) ) {
+// 		return;
+// 	}
+
+// 	switch ( $post->post_type ) {
+// 		case 'marcas':
+// 			insert_dynamic_taxonomy_term( $post->post_title, 'marcas' );
+// 			break;
+// 		case 'productos':
+// 			insert_dynamic_taxonomy_term( $post->post_title, 'productos-receta' );
+// 			break;
+// 		default:
+// 			# code...
+// 			break;
+// 	}
+	
+// }// update_taxonomies
+// add_action('save_post', 'update_taxonomies');
+
+// /*
+//  * Insert  $new_term to $taxonomy based on the title of new post
+//  *
+//  * @param string $new_term
+//  * @param string $taxonomy
+//  */
+// function insert_dynamic_taxonomy_term( $new_term, $taxonomy ){
+
+// 	$term = term_exists( $new_term, $taxonomy );
+// 	if ( FALSE !== $term && NULL !== $term ) {
+// 		return;
+// 	}
+// 	wp_insert_term( $new_term, $taxonomy );
+
+// }// insert_dynamic_taxonomy_term
+
