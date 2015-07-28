@@ -1,37 +1,27 @@
-(function($){
+var $=jQuery.noConflict();
 
-	"use strict";
+/*------------------------------------*\
+	#GENERAL FUNCTIONS
+\*------------------------------------*/
 
-	$(function(){
-
-
-		console.log('hello from functions.js');
-
-
-		/**
-		 * Validación de emails
-		 */
-		window.validateEmail = function (email) {
-			var regExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-			return regExp.test(email);
-		};
+/**
+ * This is an example description
+ * @param type name
+ * @return type name
+**/
+function exampleFunction( ){
+	
+}// exampleFunction
 
 
 
-		/**
-		 * Regresa todos los valores de un formulario como un associative array 
-		 */
-		window.getFormData = function (selector) {
-			var result = [],
-				data   = $(selector).serializeArray();
-
-			$.map(data, function (attr) {
-				result[attr.name] = attr.value;
-			});
-			return result;
-		}
 
 
-	});
+/*------------------------------------*\
+	#AJAX FUNCTIONS
+\*------------------------------------*/
 
-})(jQuery);
+/*------------------------------------*\
+	#GET / SET FUNCTIONS
+\*------------------------------------*/
+
