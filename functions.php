@@ -1,7 +1,7 @@
 <?php
 
 /*------------------------------------*\
-	CONSTANTS
+	#CONSTANTS
 \*------------------------------------*/
 
 	/**
@@ -17,7 +17,7 @@
 
 
 /*------------------------------------*\
-	INCLUDES
+	#INCLUDES
 \*------------------------------------*/
 
 	require_once('inc/post-types.php');
@@ -34,7 +34,7 @@
 
 
 /*------------------------------------*\
-	GENERAL FUNCTIONS
+	#GENERAL FUNCTIONS
 \*------------------------------------*/
 
 	/**
@@ -67,7 +67,32 @@
 
 
 /*------------------------------------*\
-	HELPER FUNCTIONS
+	#HELPER FUNCTIONS
+\*------------------------------------*/
+
+/**
+ * Print the title tag based on what is being viewed.
+ * @return string
+ */
+function print_title(){
+
+	global $page, $paged;
+
+	wp_title( '|', true, 'right' );
+	bloginfo( 'name' );
+
+	// Add a page number if necessary
+	if ( $paged >= 2 || $page >= 2 ){
+		echo ' | ' . sprintf( __( 'Página %s' ), max( $paged, $page ) );
+	}
+
+}// print_title
+
+
+
+
+/*------------------------------------*\
+	#FORMAT FUNCTIONS
 \*------------------------------------*/
 
 
@@ -75,7 +100,7 @@
 
 
 /*------------------------------------*\
-	FORMAT FUNCTIONS
+	#SET/GET FUNCTIONS
 \*------------------------------------*/
 
 
@@ -83,15 +108,7 @@
 
 
 /*------------------------------------*\
-	SET/GET FUNCTIONS
-\*------------------------------------*/
-
-
-
-
-
-/*------------------------------------*\
-	AJAX FUNCTIONS
+	#AJAX FUNCTIONS
 \*------------------------------------*/
 
 /**
